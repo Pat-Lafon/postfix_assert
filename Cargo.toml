@@ -1,0 +1,24 @@
+[package]
+name = "postfix_assert"
+version = "0.1.0"
+authors = ["Patrick LaFontaine <32135464+Pat-Lafon@users.noreply.github.com>"]
+edition = "2018"
+license = "MIT"
+repository = "https://github.com/Pat-Lafon/PostfixAssert"
+readme = "README.md"
+keywords = ["assert", "assertions", "debug_assert", "testing", "test"]
+categories = ["development-tools", "development-tools::debugging"]
+description = """
+Trait implementations of common assertions in (postfix) method style for the Rust standard library. This allows for assertions to be chained and integrated as part of an expression.
+"""
+
+exclude = [
+    "todo.md",
+]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+debug = []
+
+[dependencies]

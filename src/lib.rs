@@ -1,10 +1,13 @@
-# postfix_assert
+#![deny(missing_docs)]
+#![warn(missing_debug_implementations)]
+#![warn(clippy::all, clippy::pedantic, clippy::nursery, clippy::cargo)]
 
+/*!
 This crate provides trait implementations for standard library structs with properties that are commonly asserted. These assertions are different than other crates in that they abandon the common `assert!(x.is_none());` statement style in favor of an inline, readable `x.assert_none();`. Importantly, these `assert_*` methods return the reference that they are called on so that you can interweave your assertions with your code instead of them needing to be on their separate lines.
 
-## Example
+# Example
 
-```rust
+```
 fn computation_producing_some() -> Option<u32> {
     Some(1)
 }
@@ -18,12 +21,12 @@ computation_producing_some()
     .assert_none()
 ```
 
-## Crate Features
+# Crate Features
 
 * **debug** -
   When enabled, this will cause change all assertions to `debug_assertions` which only run in debug mode but not in release mode. The overhead for assertions is generally small, especially if the compiler can optimize them away. When they are costly, this feature only enables asserts when you are trying to debug your code. When this code runs in release mode, all methods in this library are optimized away.
 
-## Other Assertion Crates
+# Other Assertion Crates
 
 I am starting to compile a list of crates that empower assertions in some form. I use this for my benefit in two ways: I learn about new crates, which I may want to use in my code and, I can ~borrow~ ideas for useful assertions from these other crates. This list will always be incomplete and may or may not have my comments alongside each crate.
 
@@ -56,5 +59,8 @@ I am starting to compile a list of crates that empower assertions in some form. 
 * <https://crates.io/crates/assert-next>
 * <https://crates.io/crates/assert_panic_free>
 * <https://crates.io/crates/enum-unitary>
+*/
 
-License: MIT
+mod assert;
+mod option;
+pub use option::*;
