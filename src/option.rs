@@ -11,25 +11,39 @@ use crate::my_assert;
 #[allow(clippy::module_name_repetitions)]
 pub trait PostfixAssertOption: private::Sealed {
     /// This checks the Option given and panics if it is not a `Some(T)`. Otherwise it just returns the option back to you.
-    fn assert_some(&self) -> &Self;
+    fn assert_some(self) -> Self;
     /// This checks the Option given and panics if it is not `None`. Otherwise it just returns the option back to you.
-    fn assert_none(&self) -> &Self;
+    fn assert_none(self) -> Self;
 }
 
 mod private {
     // https://rust-lang.github.io/api-guidelines/future-proofing.html
     pub trait Sealed {}
     impl<T> Sealed for Option<T> {}
+    impl<T> Sealed for &Option<T> {}
 }
 
 impl<T> PostfixAssertOption for Option<T> {
     #[inline]
-    fn assert_some(&self) -> &Self {
+    fn assert_some(self) -> Self {
         my_assert!(self.is_some());
         self
     }
     #[inline]
-    fn assert_none(&self) -> &Self {
+    fn assert_none(self) -> Self {
+        my_assert!(self.is_none());
+        self
+    }
+}
+
+impl<T> PostfixAssertOption for &Option<T> {
+    #[inline]
+    fn assert_some(self) -> Self {
+        my_assert!(self.is_some());
+        self
+    }
+    #[inline]
+    fn assert_none(self) -> Self {
         my_assert!(self.is_none());
         self
     }
@@ -43,6 +57,7 @@ mod tests {
     fn assert_none() {
         let none: Option<u32> = None;
         none.assert_none();
+        None::<u32>.assert_none();
     }
 
     #[test]
@@ -56,6 +71,7 @@ mod tests {
     fn assert_some() {
         let none: Option<u32> = Some(1);
         none.assert_some();
+        Some(1).assert_some();
     }
 
     #[test]
@@ -87,6 +103,7 @@ mod debug_release {
     fn assert_none() {
         let none: Option<u32> = None;
         none.assert_none();
+        None::<u32>.assert_none();
     }
 
     #[test]
@@ -99,6 +116,7 @@ mod debug_release {
     fn assert_some() {
         let none: Option<u32> = Some(1);
         none.assert_some();
+        Some(1).assert_some();
     }
 
     #[test]
@@ -116,6 +134,7 @@ mod debug {
     fn assert_none() {
         let none: Option<u32> = None;
         none.assert_none();
+        None::<u32>.assert_none();
     }
 
     #[test]
@@ -129,6 +148,7 @@ mod debug {
     fn assert_some() {
         let none: Option<u32> = Some(1);
         none.assert_some();
+        Some(1).assert_some();
     }
 
     #[test]

@@ -25,7 +25,7 @@ computation_producing_some()
 
 ## Other Assertion Crates
 
-I am starting to compile a list of crates that empower assertions in some form. I use this for my benefit in two ways: I learn about new crates, which I may want to use in my code and, I can ~borrow~ ideas for useful assertions from these other crates. This list will always be incomplete and may or may not have my comments alongside each crate.
+I am starting to compile a list of crates that empower assertions in some form. I use this for my benefit in two ways: I learn about new crates, which I may want to use in my code and, I can ~steal~ borrow ideas for useful assertions from these other crates. This list will always be incomplete and may or may not have my comments alongside each crate.
 
 * <https://crates.io/crates/assert>
 * <https://crates.io/crates/spectral>

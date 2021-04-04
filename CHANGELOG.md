@@ -1,3 +1,8 @@
+0.1.1 (2021-04-04)
+==================
+
+This update contains a small change to the README documentation and implements the `PostfixAssertOption` trait for `&Option<T>`. Rename Github repository to match crate name.
+
 0.1.0 (2021-04-03)
 ==================
 
